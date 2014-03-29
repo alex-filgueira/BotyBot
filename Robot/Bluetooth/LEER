@@ -1,0 +1,3 @@
+Programas diseñados para el módulo Bluetooth JY-MCU.
+1º- Cargar Bluetooth_1_configurar.ino
+2ª- Cargar programas varios, ejemplo: bluetooth_2_envio_por_serie_lo_recibido_por_bluetooth.ino
