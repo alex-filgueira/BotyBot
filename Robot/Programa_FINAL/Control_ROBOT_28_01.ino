@@ -1,12 +1,14 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+Este programa es el empleado en el robot BotyBot a día 28/01/2014.
+*/
 #include "Ultrasonic.h" //Se incluye la librería
 // Ultrasonic - Library for HR-SC04 Ultrasonic Ranging Module.
 // Rev.4 (06/2012)
 // J.Rodrigo ( www.jra.so )
 // more info at www.ardublog.com
 
-/*
-Descripcion
- */
 //FUNCIONS Basicas
 void  leer_bluetooth();
 float  calculo_v();

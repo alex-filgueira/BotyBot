@@ -1,3 +1,8 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
+
 unsigned log lasTime;
 double Input, Output, Setpoint;
 double errSum, lastErr;

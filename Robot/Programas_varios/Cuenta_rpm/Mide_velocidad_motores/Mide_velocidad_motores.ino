@@ -1,3 +1,8 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
+
 int Setpoint=0;
 int pwmD=5;
 int pwmI=6;

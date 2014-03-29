@@ -1,8 +1,10 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
 
 float tension = 0;
 float entrada = 0;
-
-
 
 void setup()
 {

@@ -1,3 +1,8 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
+
 float revoluciones = 0 ;
 volatile float variacionT = 0;
 volatile float Tant = 0;

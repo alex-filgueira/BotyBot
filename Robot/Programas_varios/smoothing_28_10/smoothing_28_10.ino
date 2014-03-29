@@ -1,4 +1,17 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
 #include "Ultrasonic.h" //Se incluye la librería
+/*
+Mario Pérez Esteso
+https://www.youtube.com/user/telecoreference
+http://www.diarioelectronicohoy.com/arduino/
+https://twitter.com/_Mario_Perez
+
+Facebook page! Join us with a LIKE!
+https://www.facebook.com/TutorialesArduino
+*/
 
 
  Ultrasonic ultrasonicD(10,11); //(Trigger pin,Echo pin)

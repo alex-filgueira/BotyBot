@@ -1,5 +1,19 @@
-#include <Servo.h> 
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
 #include <Ultrasonic.h>
+/*
+Mario Pérez Esteso
+https://www.youtube.com/user/telecoreference
+http://www.diarioelectronicohoy.com/arduino/
+https://twitter.com/_Mario_Perez
+
+Facebook page! Join us with a LIKE!
+https://www.facebook.com/TutorialesArduino
+*/
+#include <Servo.h> 
+
 
 Ultrasonic ultrasonic(5,7); //(Trigger pin,Echo pin) pines digitales
 Servo myservo; 

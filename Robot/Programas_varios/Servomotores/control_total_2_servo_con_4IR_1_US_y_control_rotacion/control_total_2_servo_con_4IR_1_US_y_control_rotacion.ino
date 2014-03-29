@@ -1,3 +1,7 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
 ///// Control de dos servos con 3 sensores IR  segun los cuales si el sensorPin <40 para y decide en funcion de sensorPin2 y sensorPin4
 //Problema con sensorPin, pues detecta mucho ruido, hay que separarlo para que funcione bien. --> Considerable mejora con la tecnica de smoothing
 // las interrupciones estn asociadas co nlas siguientes patillas:
@@ -7,6 +11,15 @@
 //Int3-->1
 #include <Servo.h> 
 #include "Ultrasonic.h" //Se incluye la librería
+/*
+Mario Pérez Esteso
+https://www.youtube.com/user/telecoreference
+http://www.diarioelectronicohoy.com/arduino/
+https://twitter.com/_Mario_Perez
+
+Facebook page! Join us with a LIKE!
+https://www.facebook.com/TutorialesArduino
+*/
 
 Ultrasonic ultrasonic(6,7); //(Trigger pin,Echo pin)
 int dist_cm=0;

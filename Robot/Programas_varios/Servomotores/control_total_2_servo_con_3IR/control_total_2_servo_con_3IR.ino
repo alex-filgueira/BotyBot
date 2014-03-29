@@ -1,3 +1,7 @@
+/*
+Alexandre Filgueira Lago --> http://botybot.wordpress.com/
+*-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-**-*-*-*-*-*
+*/
 ///// Control de dos servos con 3 sensores IR  segun los cuales si el sensorPin <40 para y decide en funcion de sensorPin2 y sensorPin4
 //Problema con sensorPin, pues detecta mucho ruido, hay que separarlo para que funcione bien. --> Considerable mejora con la tecnica de smoothing
 #include <Servo.h> 
