@@ -1,1 +1,8 @@
 Cargar en el robot a través del IDE Arduino y a JUGAR!!
+
+Última versión 07/05/2014:
+--------------------------------------------------------------------------------
+-Mejoras en el regulador PD encargado del control manual y automático del robot.
+-Añadida rutina de Autoajuste para el modo Sigue.Lineas. *
+--------------------------------------------------------------------------------
+* Falta depurar el funcionamiento de esta rutina.

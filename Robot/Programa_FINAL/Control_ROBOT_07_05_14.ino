@@ -35,7 +35,7 @@ float v_realI;
 float v_realD;
 
 
-float kp1=0;//Utilizado no regulador
+float kp1=0.5;//Utilizado no regulador
 float kp2=1;
 float rpmI;
 float rpmD;
@@ -136,6 +136,13 @@ int Variar_V=0;
 
 float Kp_sl=0;
 float Kd_sl=0;
+
+int autoaxuste = 0;
+float ulti_autoaxuste = 0.0;
+
+int minValorCNY = 0;
+int maxValorCNY = 0;
+int valorCNY = 600; // Este e un valor que funciona ben
 //////////////
 ///CONTROL CARGA
 float nivel_bateria=0.0;
@@ -308,13 +315,79 @@ void loop()
 void sigueLineas()//RUTINA SIGUE_LINEAS
 {
   varCNY1 = analogRead(CNY1);//lectura dos valores analog
+  //Serial.print("CNY1 = ");
+  //Serial.println(varCNY1);
   varCNY2 = analogRead(CNY2);
+  //Serial.print("CNY2 = ");
+  //Serial.println(varCNY2);
   varCNY3 = analogRead(CNY3);
+  //Serial.print("CNY3 = ");
+  //Serial.println(varCNY3);
+  //delay(1000);
 
   //Localizando linea
-  if(varCNY1<600) //Elixo 600 por que e un valor que diferencia a linea da mesa 
+  //-------------------------------------
+  if(autoaxuste == 1)
   {
-    if(varCNY2<600)
+    if((millis() - ulti_autoaxuste) < 4000) // 4 segundos xirando
+    {
+      xirar_a_dereita = 1;
+      rpmI = 50;
+      rpmD = 50;
+      adiante=0;
+      motores_ON=1;
+      parar=0;
+      xirar_a_esquerda=0;
+      atras=0;
+      
+      // Actualizar valores max
+      if(varCNY1 > maxValorCNY)
+      {
+        maxValorCNY = varCNY1;
+      }
+      if(varCNY2 > maxValorCNY)
+      {
+        maxValorCNY = varCNY2;
+      }
+      if(varCNY3 > maxValorCNY)
+      {
+        maxValorCNY = varCNY3;
+      }
+      // Actualizar valores min
+      if(varCNY1 < minValorCNY)
+      {
+        minValorCNY = varCNY1;
+      }
+      if(varCNY2 < minValorCNY)
+      {
+        minValorCNY = varCNY2;
+      }
+       if(varCNY3 < minValorCNY)
+      {
+        minValorCNY = varCNY3;
+      }
+
+    }
+    else
+    {
+
+      autoaxuste = 0;
+      xirar_a_dereita = 0;
+      rpmI = 0;
+      rpmD = 0;
+      motores_ON=0;
+      parar = 1;
+      
+      valorCNY = (maxValorCNY - minValorCNY)/2;
+    }
+  }
+  else
+  {
+    
+  //-------------------------------------
+  if(varCNY1<valorCNY) //Elixo 600 por que e un valor que diferencia a linea da mesa 
+  {
+    if(varCNY2<valorCNY)
     {
       error_sl=-1;// Desplazado un espazo do centro
     } 
@@ -323,9 +396,9 @@ void sigueLineas()//RUTINA SIGUE_LINEAS
       error_sl=-2; //A linea esta desplazada dous espazos do centro
     }
   }
-  if(varCNY3<600)
+  if(varCNY3<valorCNY)
   {
-    if(varCNY2<600)
+    if(varCNY2<valorCNY)
     {
       error_sl=1;
     } 
@@ -334,15 +407,15 @@ void sigueLineas()//RUTINA SIGUE_LINEAS
       error_sl=2; 
     }
   }
-  if((varCNY2<600) && (varCNY1>600) && (varCNY3>600))
+  if((varCNY2 < valorCNY) && (varCNY1 > valorCNY) && (varCNY3 > valorCNY))
   {
     error_sl=0;//Linea centrada no sensor central
   }
-  if((error_sl_ant==-2)&&(varCNY2>600) && (varCNY1>600) && (varCNY3>600))//Se sae pola esquerda
+  if((error_sl_ant==-2)&&(varCNY2>valorCNY) && (varCNY1>valorCNY) && (varCNY3>valorCNY))//Se sae pola esquerda
   {
     error_sl=-3; 
   }
-  if((error_sl_ant==2)&&(varCNY2>600) && (varCNY1>600) && (varCNY3>600))//Se sae pola dereita
+  if((error_sl_ant==2)&&(varCNY2>valorCNY) && (varCNY1>valorCNY) && (varCNY3>valorCNY))//Se sae pola dereita
   {
     error_sl=3;
   }
@@ -377,6 +450,7 @@ void sigueLineas()//RUTINA SIGUE_LINEAS
     }
   }
   //Serial.println(Variar_V);
+  }
 }
 
 
@@ -429,7 +503,7 @@ void automatico()//RUTINA DE CONTROL_AUTOMATICO
 
 void manual()//RUTINA DE CONTROL_MANUAL
 {
-  if((millis()-tempo_avisos_cercania)>300)// Tempo que pasa entre cada control de obstaculos
+  if((millis()-tempo_avisos_cercania)>200)// Tempo que pasa entre cada control de obstaculos
   {
     tempo_avisos_cercania=millis();
 
@@ -447,7 +521,7 @@ void manual()//RUTINA DE CONTROL_MANUAL
     } 
     else
     {
-      if(numero_de_avisos<1)
+      if(numero_de_avisos<3)
       {
         Serial.println('2');// Isto significa que non ai perigo
         numero_de_avisos++;
@@ -477,14 +551,14 @@ void dondeestoy()//FUNCION UTILIZADA CANDO NON HAI NINGUN OBSTACULO=PARED CERCA
   }
   else
   {
-    if((smoothing_dcha(distD_cm))< 35)//Chama a funcion smoothing_dcha e lle pasa o valor distD_cm, o valor devolto por esta funcion e comparado co <
+    if((smoothing_dcha(distD_cm))< 20)//Chama a funcion smoothing_dcha e lle pasa o valor distD_cm, o valor devolto por esta funcion e comparado co <
     {
       en_pared_derecha=1;
       donde_estoy=0; 
     }
     else
     {
-      if((smoothing_izq(distI_cm))<35)//Si hai algo a esquerda
+      if((smoothing_izq(distI_cm))<20)//Si hai algo a esquerda
       {
         en_pared_izquierda=1;
         donde_estoy=0; 
@@ -594,14 +668,15 @@ void enparedizquierda()//FUNCION PARA SEGUIR UNHA PAREDE A ESQUERDA
   {
     //Lectura en cm dos sensores laterais
     int distI_cm=ultrasonicI.Ranging(CM); //Medimos a distancia en cm.
-    if((smoothing_izq(distI_cm))<12)//Distancia a ESQUERDA < Distancia MAX
+    //Serial.println(distI_cm);
+    if((smoothing_izq(distI_cm))<15)//Distancia a ESQUERDA < Distancia MAX
     {
       if(alejando==1)
       {
         motores_ON=1;
-        acelerando_izquierda=13;// Variable responsable de acercarse e alexarse das paredes
+        acelerando_izquierda=19;// Variable responsable de acercarse e alexarse das paredes
         acelerando_derecha=0;
-        //  Serial.println("alexando");
+          //Serial.println("alexando < 12");
         adiante=1;
       } 
       else
@@ -616,9 +691,9 @@ void enparedizquierda()//FUNCION PARA SEGUIR UNHA PAREDE A ESQUERDA
           else
           {
             motores_ON=1;
-            acelerando_derecha=13; 
+            acelerando_derecha=10; 
             acelerando_izquierda=0;
-            // Serial.println("alexando");
+            //Serial.println("acercando > 9");
             adiante=1;
           }
         } 
@@ -635,9 +710,9 @@ void enparedizquierda()//FUNCION PARA SEGUIR UNHA PAREDE A ESQUERDA
         alejando=0;
         acercando=1;
         motores_ON=1;
-        acelerando_derecha=14;
+        acelerando_derecha=10;
         acelerando_izquierda=0;
-        // Serial.println("acercando superada MAX");
+         //Serial.println("acercando < 35");
         adiante=1;
       }
       else
@@ -684,7 +759,7 @@ void enparedderecha() //FUNCION UTILIZADA PARA SEGUIR UNHA PAREDE A DEREITA
       {
         motores_ON=1;
         acelerando_izquierda=0;
-        acelerando_derecha=13;
+        acelerando_derecha=19;
         //Serial.println("alexando");
         adiante=1;
       } 
@@ -701,7 +776,7 @@ void enparedderecha() //FUNCION UTILIZADA PARA SEGUIR UNHA PAREDE A DEREITA
           {
             motores_ON=1;
             acelerando_derecha=0; 
-            acelerando_izquierda=13;
+            acelerando_izquierda=10;
             // Serial.println("acercando");
             adiante=1;
           }
@@ -720,7 +795,7 @@ void enparedderecha() //FUNCION UTILIZADA PARA SEGUIR UNHA PAREDE A DEREITA
         acercando=1;
         motores_ON=1;
         acelerando_derecha=0;
-        acelerando_izquierda=14;
+        acelerando_izquierda=10;
         //Serial.println("acercando superada MAX");
         adiante=1;
       }
@@ -946,7 +1021,15 @@ void leer_bluetooth()
         Kd_sl = Kd_sl-1; 
         //Serial.println(Kd_sl);
         break;  
-      }    
+      }
+    case 'x':
+      {
+        //Serial.println("Autoaxuste");
+        autoaxuste = 1;
+        sigue_lineas=1;
+        ulti_autoaxuste = millis();
+        break;  
+      }  
     } 
   }
 }
