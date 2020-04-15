@@ -1,3 +1,18 @@
+English:
+The folder "Programa_FINA"L contains the program used in the BotyBot robot designed by Alexandre Filgueira Lago and documented at: http://botybot.wordpress.com/
+THE robot is able to control:
+2 Ultrasound Sensors. -> HC-SR04.
+2 Medium-long distance infrared sensors. -> SHARP 0A41SK.
+2 Encoders made with CNY-70 infrared sensors.
+3 CNY-70 line-tracking sensors.
+1 Check the battery charge status.
+1 Bluetooth connection. -> JY-MCU.
+
+
+The Various_Programs folder contains a set of programs used in the development of the main BotyBot robot program, but which, independently used, can be useful for carrying out many applications.
+
+
+Castellano:
 La carpeta Programa_FINAL contiene el programa empleado en el robot BotyBot diseñado por Alexandre Filgueira Lago y documentado en: http://botybot.wordpress.com/
 EL robot Es capáz de controlar:
 2 Sensores de Ultrasonidos. --> HC-SR04.
