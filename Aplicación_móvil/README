@@ -1,6 +1,29 @@
+
+English:
+The mobile application used to control the BotyBot robot is available in a .zip file.
+
+Instructions for installation:
+
+Form A)
+1º- Download Boty.zip.
+2º- Unzip Boty.zip.
+3º- Enter in http://beta.appinventor.mit.edu/ and create an account if it is not available.
+4º- Go to My Projects> More Actions> Upload Source> Select Application and upload.
+5º- Connect mobile phone.
+6º- Follow instructions of http://beta.appinventor.mit.edu/learn/setup/
+
+Form B)
+
+1º- Download Boty.
+2º- Transfer to the mobile phone.
+3º- Install application, for this it may be necessary to allow the installation of non-secure applications (or similar).
+
+
+Castellano:
 La aplicación móvil empleada para controlar el robot BotyBot está disponible en un archivo.zip. 
 
 Instrucciones para su instalación:
+
 Forma A)
 1º- Descargar Boty.zip.
 2º- Descomprimir Boty.zip.
