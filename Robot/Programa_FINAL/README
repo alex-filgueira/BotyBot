@@ -1,3 +1,15 @@
+English:
+Load into the robot through the Arduino IDE and PLAY!
+
+Latest version 07/05/2014:
+-------------------------------------------------- ------------------------------
+-Improvements in the PD controller responsible for manual and automatic control of the robot.
+-Added Auto-tuning routine for Follow Line mode. *
+-------------------------------------------------- ------------------------------
+* It is necessary to debug the operation of this routine.
+
+
+Castellano:
 Cargar en el robot a través del IDE Arduino y a JUGAR!!
 
 Última versión 07/05/2014:
