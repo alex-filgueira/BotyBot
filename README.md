@@ -4,7 +4,7 @@ BotyBot
 Proyecto del Robot BotyBot
 
 
-    Blog: http://botybotes.wordpress.com/
+    Blog: http://botybotes.wordpress.com
 
     Edit:
     These develop wass maked in 2014, 6 years ago (I´m in 2020). The software, tools, etc was changed a lot in this years and the price for the hardware was reduced.
