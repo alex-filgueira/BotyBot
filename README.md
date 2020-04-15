@@ -1,9 +1,13 @@
+[robot]: /Robot_1.jpg "Robot"
+
 BotyBot
 =======
 
 Proyecto del Robot BotyBot
 
 Blog: http://botybotes.wordpress.com
+
+![alt text][robot]
 
     Edit:
     These develop wass maked in 2014, 6 years ago (I´m in 2020).
